@@ -32,8 +32,8 @@ public class User extends AuditingFields{
         this.phone = phone;
     }
 
-    public static User of(String email, String password, String name, RoleType roleType, String phone) {
-        return new User(false, email, password, name, roleType, phone);
+    public static User of(String email, String password, String name, String phone) {
+        return new User(false, email, password, name, RoleType.CITIZEN, phone);
     }
 
     public DefaultDto.CreateResDto toCreateResDto() {

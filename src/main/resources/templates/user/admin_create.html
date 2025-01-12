@@ -74,15 +74,17 @@
             $( document ).ready(function() {
                 console.log( "ready!" );
             });
+
             function create_tbnotice(){
                 if(!listenerBeforeCreate()){
                     return false;
                 }
                 let _param = {
-                    'username' : $("#create_user_username").val(),
+                    'email' : $("#create_user_username").val(),  // username → email 변경
                     'password' : $("#create_user_password").val(),
                     'name' : $("#create_user_name").val(),
-                    'phone' : $("#create_user_phone").val()
+                    'phone' : $("#create_user_phone").val(),
+                    'roleType' : "CITIZEN" // 기본 역할을 일반 사용자로 설정 (관리자/공무원 구분 필요 시 수정)
                 };
 
                 $.ajax({
@@ -92,14 +94,14 @@
                     data: JSON.stringify(_param),
                     cache: false,
                     success: (obj_data, status, xhr)=>{
-                        alert(JSON.stringify(obj_data));
+                        alert("회원가입 성공!");
+                        console.log("Response:", obj_data);
                     },
                     error: (obj_data, status, xhr)=>{
-                        alert("error!!");
-                        alert(JSON.stringify(obj_data));
+                        alert("회원가입 실패!");
+                        console.log("Error:", obj_data);
                     }
                 });
-
             }
         </script>
         <body th:replace="~{@{includes/admin/footer}}"></body>

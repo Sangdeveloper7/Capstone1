@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public DefaultDto.CreateResDto login(UserDto.LoginReqDto param) {
         System.out.println("login");
-        User user = userRepository.findByUsernameAndPassword(param.getUsername(), param.getPassword());
+        User user = userRepository.findByEmailAndPassword(param.getEmail(), param.getPassword());
         if(user == null){
             throw new RuntimeException("username or password incorrect");
         }
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public DefaultDto.CreateResDto create(UserDto.CreateReqDto param) {
         System.out.println("create");
-        User user = userRepository.findByUsername(param.getUsername());
+        User user = userRepository.findByEmail(param.getEmail());
         if(user != null){
             //return DefaultDto.CreateResDto.builder().id((long) -400).build();
             throw new RuntimeException("already exist");

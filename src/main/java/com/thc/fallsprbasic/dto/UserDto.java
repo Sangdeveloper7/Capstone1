@@ -9,20 +9,20 @@ public class UserDto {
 
     @AllArgsConstructor @NoArgsConstructor @SuperBuilder @Setter @Getter
     public static class LoginReqDto{
-        private String username;
+        private String email;
         private String password;
     }
 
     /**/
     @AllArgsConstructor @NoArgsConstructor @SuperBuilder @Setter @Getter
     public static class CreateReqDto extends DefaultDto.CreateReqDto {
-        private String username;
+        private String email;
         private String password;
         private String name;
         private String phone;
 
         public User toEntity(){
-            return User.of(getUsername(), getPassword(), getName(), getPhone());
+            return User.of(getEmail(), getPassword(), getName(), getPhone());
         }
     }
     @AllArgsConstructor @NoArgsConstructor @SuperBuilder @Setter @Getter
@@ -34,7 +34,7 @@ public class UserDto {
 
     @AllArgsConstructor @NoArgsConstructor @Setter @Getter
     public static class DetailResDto extends DefaultDto.DetailResDto {
-        private String username;
+        private String email;
         private String name;
         private String phone;
     }
